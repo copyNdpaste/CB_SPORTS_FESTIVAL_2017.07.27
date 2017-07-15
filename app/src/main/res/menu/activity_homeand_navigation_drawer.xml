@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:title="알림마당">
+            <menu>
+                <item
+                    android:id="@+id/notice"
+                    android:title="공지사항"
+                    android:icon="@drawable/ic_menu_camera"/>
+                <item
+                    android:id="@+id/news"
+                    android:title="뉴스"
+                    android:icon="@drawable/ic_menu_gallery"/>
+            </menu>
+        </item>
+        <item
+            android:id="@+id/introduce"
+            android:title="대회소개"
+            android:icon="@drawable/ic_menu_slideshow"/>
+        <item android:title="경기일정"
+            android:icon="@drawable/ic_menu_manage">
+            <menu>
+                <item
+                    android:id="@+id/game_date"
+                    android:title="날짜별"
+                    android:icon="@drawable/ic_menu_manage"/>
+                <item
+                    android:id="@+id/game_event"
+                    android:icon="@drawable/ic_menu_manage"
+                    android:title="종목별" />
+            </menu>
+        </item>
+        <item
+            android:id="@+id/rank"
+            android:title="종합순위"
+            android:icon="@drawable/ic_menu_manage"/>
+        <item
+            android:id="@+id/restaurant"
+            android:title="맛집,숙박"
+            android:icon="@drawable/ic_menu_manage"/>
+    </group>
+</menu>
