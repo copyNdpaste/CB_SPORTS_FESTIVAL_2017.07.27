@@ -151,7 +151,7 @@
 
 
 
-//탭바 생성
+<!--탭바 생성-->
         <TabHost
             android:id="@+id/tabHost"
             android:layout_width="0dp"
