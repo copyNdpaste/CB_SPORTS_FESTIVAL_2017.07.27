@@ -10,11 +10,12 @@
     android:layout_marginBottom="8dp">
 
     <item
-        android:id="@+id/w"
-        android:title="submenu 1"
+        android:id="@+id/kakao"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:icon="@drawable/kakaotalk_icon"
+        android:title="카카오톡">
+        <!--
         <menu
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
@@ -31,37 +32,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </menu>
+        -->
     </item>
-
     <item
-        android:id="@+id/d"
-        android:title="submenu 2"
+        android:id="@+id/facebook"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:title="페이스북">
+        <!--
+                <menu
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
 
-        <menu
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+                    <item android:title="사과"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-            <item android:title="사과"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    <item android:title="배"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
 
-            <item android:title="배"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <item android:title="수박"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                    <item android:title="수박"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </menu>
+                -->
+    </item>
+    <item
+        android:id="@+id/인스타그램"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="인스타그램" />
         </menu>
-    </item>
-
-    <item
-        android:id="@+id/c"
-        android:title="submenu 3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />>
-
-</menu>
-

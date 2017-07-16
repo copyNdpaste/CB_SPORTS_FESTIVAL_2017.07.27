@@ -150,6 +150,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.game_event) {
 
         }
+        else if (id == R.id.kakao) {
+            shareKakao();
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
@@ -177,15 +180,17 @@ public class MainActivity extends AppCompatActivity
         {
             e.printStackTrace();
         }
-    }/*
+    }
+    /*
     @Override
-    public boolean onOptionsItemSelected2(MenuItem item){
+    public boolean onOptionsItemSelected1(MenuItem item){
         switch (item.getItemId())
         {
-            case R.id.kakaoshare:
+            case R.id.kakao:
                 shareKakao();
                 break;
         }
-        return super.onOptionsItemSelected2(item);
-    }*/
+        return super.onOptionsItemSelected1(item);
+    }
+    */
 }
