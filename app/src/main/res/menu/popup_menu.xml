@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/menu"
+    android:layout_width="wrap_content"
+    android:layout_height="1dp"
+    android:layout_marginRight="8dp"
+
+    android:layout_marginLeft="8dp"
+
+    android:layout_marginBottom="8dp">
+
+    <item
+        android:id="@+id/w"
+        android:title="submenu 1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <menu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <item android:title="카카오톡"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <item android:title="페이스북"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <item android:title="인스타그램"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/d"
+        android:title="submenu 2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <menu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <item android:title="사과"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <item android:title="배"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <item android:title="수박"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </menu>
+    </item>
+
+    <item
+        android:id="@+id/c"
+        android:title="submenu 3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />>
+
+</menu>
+
