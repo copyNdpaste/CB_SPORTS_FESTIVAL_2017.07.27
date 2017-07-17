@@ -11,6 +11,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import com.kakao.kakaolink.KakaoLink;
 import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
+import com.kakao.util.KakaoParameterException;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,9 +51,26 @@ public class MainActivity extends AppCompatActivity
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(MainActivity.this, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        switch (item.getItemId()){
+                            case R.id.kakao:
+                                Toast.makeText(MainActivity.this, "카카오톡으로 모두의 체전 알리기",Toast.LENGTH_SHORT).show();
+                                shareKakao();
+                                return true;
+                            case R.id.kakaoweb:
+                                Toast.makeText(MainActivity.this, "전국체전 홈페이지 알리기",Toast.LENGTH_SHORT).show();
+                                shareKakaoWeb();
+                                return true;
+                            case R.id.facebook:
+                                Toast.makeText(MainActivity.this, "페이스북에 글 올리기",Toast.LENGTH_SHORT).show();
+                                return true;
+                            case R.id.instagram:
+                                Toast.makeText(MainActivity.this, "인스타그램에 글 올리기",Toast.LENGTH_SHORT).show();
+                                return true;
+                        }
+
                         return true;
                     }
+
                 });
                 popupMenu.show(); // 메뉴를 띄우기
             }
@@ -91,8 +111,6 @@ public class MainActivity extends AppCompatActivity
         host.addTab(spec);
     }
 
-
-
     public void onButton1Clicked(View V){ //대회 소개 페이지로 넘어감
         Intent intent = new Intent(this, TabActivity.class);
         startActivity(intent);
@@ -117,21 +135,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     //햄버거메뉴
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -150,47 +153,85 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.game_event) {
 
         }
-        else if (id == R.id.kakao) {
-            shareKakao();
-        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
         return true;
     }
 
-    public void shareKakao(){
-        try{
-            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
-            final KakaoTalkLinkMessageBuilder kakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.popup_menu, menu);
 
-            //메시지 추가
-            kakaoBuilder.addText("전국체전 홍보 앱 모두의 체전입니다.");
+        return true;
+    }
+/*
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.kakao:
+                Toast.makeText(this, "카카오톡으로 모두의 체전 알리기",Toast.LENGTH_SHORT).show();
+                shareKakao();
+                return true;
+            case R.id.kakaoweb:
+                Toast.makeText(this, "전국체전 홈페이지 알리기",Toast.LENGTH_SHORT).show();
+                shareKakaoWeb();
+                return true;
+            case R.id.facebook:
+                Toast.makeText(this, "페이스북에 글 올리기",Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.instagram:
+                Toast.makeText(this, "인스타그램에 글 올리기",Toast.LENGTH_SHORT).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+*/
 
-            //이미지 가로 세로 는 80px보다 커야함. 이미지 용량은 500Kb 이하
-            String url="https://lh5.ggpht.com/yVfPv-yLjIuBjpKj41NLkLXmuVv8XzH0m2hf-_sz9lQDv9WB9SX0McB8Jn4bQe4w5Q=w300";
-            kakaoBuilder.addImage(url,30,30);
 
-            //앱 실행버튼
-            kakaoBuilder.addAppButton("앱 실행, 다운하기");
+    public void shareKakaoWeb(){
+        try {
+            final KakaoLink kakaoLink2 = KakaoLink.getKakaoLink(this);
+            final KakaoTalkLinkMessageBuilder kakaoBuilder2 = kakaoLink2.createKakaoTalkLinkMessageBuilder();
 
-            //메시지 발송
-            kakaoLink.sendMessage(kakaoBuilder, this);
-        }catch (Exception e)
-        {
+            /*메시지 추가*/
+            kakaoBuilder2.addText("제98회 전국 체육대회");
+
+            /*이미지 가로/세로 사이즈는 80px 보다 커야하며, 이미지 용량은 500kb 이하로 제한된다.*/
+            String url = "http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg";
+            kakaoBuilder2.addImage(url, 1080, 1920);
+
+            /*웹 실행버튼 추가*/
+            kakaoBuilder2.addWebButton("http://2017sports.chungbuk.go.kr/www/index.do");
+
+            /*메시지 발송*/
+            kakaoLink2.sendMessage(kakaoBuilder2, this);
+        } catch (KakaoParameterException e){
             e.printStackTrace();
         }
     }
-    /*
-    @Override
-    public boolean onOptionsItemSelected1(MenuItem item){
-        switch (item.getItemId())
-        {
-            case R.id.kakao:
-                shareKakao();
-                break;
+
+    public void shareKakao(){
+        try {
+            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
+            final KakaoTalkLinkMessageBuilder kakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+
+            /*메시지 추가*/
+            kakaoBuilder.addText("제98회 전국 체육대회");
+
+            /*이미지 가로/세로 사이즈는 80px 보다 커야하며, 이미지 용량은 500kb 이하로 제한된다.*/
+            String url = "http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg";
+            kakaoBuilder.addImage(url, 1080, 1920);
+
+            /*앱 실행버튼 추가*/
+            kakaoBuilder.addAppButton("모두의 체전 앱 실행하기");
+
+            /*메시지 발송*/
+            kakaoLink.sendMessage(kakaoBuilder, this);
+        } catch (KakaoParameterException e){
+            e.printStackTrace();
         }
-        return super.onOptionsItemSelected1(item);
     }
-    */
+
 }

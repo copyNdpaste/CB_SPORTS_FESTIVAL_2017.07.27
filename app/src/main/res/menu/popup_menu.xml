@@ -13,54 +13,25 @@
         android:id="@+id/kakao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:icon="@drawable/kakaotalk_icon"
-        android:title="카카오톡">
-        <!--
-        <menu
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        android:title="카카오톡으로 앱 공유!"/>
 
-            <item android:title="카카오톡"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+    <item
+        android:id="@+id/kakaoweb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="전국체전 사이트 알리기"/>
 
-            <item android:title="페이스북"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <item android:title="인스타그램"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </menu>
-        -->
-    </item>
     <item
         android:id="@+id/facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="페이스북">
-        <!--
-                <menu
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+        android:title="페이스북"/>
 
-                    <item android:title="사과"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
 
-                    <item android:title="배"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                    <item android:title="수박"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-                </menu>
-                -->
-    </item>
     <item
-        android:id="@+id/인스타그램"
+        android:id="@+id/instagram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="인스타그램" />
-        </menu>
+
+</menu>
