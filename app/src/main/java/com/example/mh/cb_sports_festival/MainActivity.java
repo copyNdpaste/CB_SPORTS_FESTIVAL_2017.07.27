@@ -1,5 +1,6 @@
 package com.example.mh.cb_sports_festival;
 
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -171,17 +172,9 @@ public class MainActivity extends AppCompatActivity
 
     public void shareFacebook(){
         ShareLinkContent content = new ShareLinkContent.Builder()
-
-                //링크의 콘텐츠 제목
-                .setContentTitle("페이스북 공유 링크입니다.")
-                //게시물에 표시될 썸네일 이미지의 URL
-                .setImageUrl(Uri.parse("http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg"))
                 //공유될 링크
-               // .setContentUrl(Uri.parse())
-                //콘텐츠 설명
-                .setContentDescription("1,2,3,4")
+                .setContentUrl(Uri.parse("https://www.facebook.com/cb21sports/"))
                 .build();
-
         ShareDialog shareDialog = new ShareDialog(this);
 
         shareDialog.show(content, ShareDialog.Mode.FEED); //AUTOMATIC, FEED, NATIVE, WEB 등의 다이얼로그 형식이 있다.
