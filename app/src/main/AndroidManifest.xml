@@ -40,16 +40,19 @@
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
+            android:value="@string/kakao_app_key"
+            />
 
-        <activity android:name=".PopUpMenu">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id"
+            />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <provider
+            android:authorities="com.facebook.app.FacebookContentProvider1485345334820436"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
 
-        </activity>
     </application>
 
 </manifest>

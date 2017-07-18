@@ -11,17 +11,22 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.share.model.ShareLinkContent;
+import com.facebook.share.widget.ShareDialog;
 import com.kakao.kakaolink.KakaoLink;
 import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.kakao.util.KakaoParameterException;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,6 +42,10 @@ public class MainActivity extends AppCompatActivity
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(viewPagerAdapter);
+
+        //페이스북 API 사용
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppEventsLogger.activateApp(this);
 
         share = (ImageButton) findViewById (R.id.share);
 
@@ -62,9 +71,14 @@ public class MainActivity extends AppCompatActivity
                                 return true;
                             case R.id.facebook:
                                 Toast.makeText(MainActivity.this, "페이스북에 글 올리기",Toast.LENGTH_SHORT).show();
+                                shareFacebook();
                                 return true;
                             case R.id.instagram:
                                 Toast.makeText(MainActivity.this, "인스타그램에 글 올리기",Toast.LENGTH_SHORT).show();
+                                return true;
+                            case R.id.twitter:
+                                Toast.makeText(MainActivity.this, "트위터에 글 올리기",Toast.LENGTH_SHORT).show();
+                                shareTwitter();
                                 return true;
                         }
 
@@ -109,6 +123,81 @@ public class MainActivity extends AppCompatActivity
         spec.setContent(R.id.tab3);
         spec.setIndicator("+");
         host.addTab(spec);
+    }
+
+    public void shareKakao(){
+        try {
+            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
+            final KakaoTalkLinkMessageBuilder kakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
+
+            /*메시지 추가*/
+            kakaoBuilder.addText("제98회 전국 체육대회");
+
+            /*이미지 가로/세로 사이즈는 80px 보다 커야하며, 이미지 용량은 500kb 이하로 제한된다.*/
+            String url = "http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg";
+            kakaoBuilder.addImage(url, 1080, 1920);
+
+            /*앱 실행버튼 추가*/
+            kakaoBuilder.addAppButton("모두의 체전 앱 실행하기");
+
+            /*메시지 발송*/
+            kakaoLink.sendMessage(kakaoBuilder, this);
+        } catch (KakaoParameterException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void shareKakaoWeb(){
+        try {
+            final KakaoLink kakaoLink2 = KakaoLink.getKakaoLink(this);
+            final KakaoTalkLinkMessageBuilder kakaoBuilder2 = kakaoLink2.createKakaoTalkLinkMessageBuilder();
+
+            /*메시지 추가*/
+            kakaoBuilder2.addText("제98회 전국 체육대회");
+
+            /*이미지 가로/세로 사이즈는 80px 보다 커야하며, 이미지 용량은 500kb 이하로 제한된다.*/
+            String url = "http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg";
+            kakaoBuilder2.addImage(url, 1080, 1920);
+
+            /*웹 실행버튼 추가*/
+            kakaoBuilder2.addWebButton("http://2017sports.chungbuk.go.kr/www/index.do");
+
+            /*메시지 발송*/
+            kakaoLink2.sendMessage(kakaoBuilder2, this);
+        } catch (KakaoParameterException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void shareFacebook(){
+        ShareLinkContent content = new ShareLinkContent.Builder()
+
+                //링크의 콘텐츠 제목
+                .setContentTitle("페이스북 공유 링크입니다.")
+                //게시물에 표시될 썸네일 이미지의 URL
+                .setImageUrl(Uri.parse("http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg"))
+                //공유될 링크
+               // .setContentUrl(Uri.parse())
+                //콘텐츠 설명
+                .setContentDescription("1,2,3,4")
+                .build();
+
+        ShareDialog shareDialog = new ShareDialog(this);
+
+        shareDialog.show(content, ShareDialog.Mode.FEED); //AUTOMATIC, FEED, NATIVE, WEB 등의 다이얼로그 형식이 있다.
+    }
+
+    public void shareTwitter(){
+        String strLink = null;
+        try{
+            strLink = String.format("http://twitter.com/intent/tweet?text=%s",
+                    URLEncoder.encode("공유할 텍스트를 입력하세요","utf-8"));
+        } catch(UnsupportedEncodingException e1){
+            e1.printStackTrace();
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(strLink));
+        startActivity(intent);
     }
 
     public void onButton1Clicked(View V){ //대회 소개 페이지로 넘어감
@@ -158,7 +247,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.END);
         return true;
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -166,72 +255,5 @@ public class MainActivity extends AppCompatActivity
 
         return true;
     }
-/*
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.kakao:
-                Toast.makeText(this, "카카오톡으로 모두의 체전 알리기",Toast.LENGTH_SHORT).show();
-                shareKakao();
-                return true;
-            case R.id.kakaoweb:
-                Toast.makeText(this, "전국체전 홈페이지 알리기",Toast.LENGTH_SHORT).show();
-                shareKakaoWeb();
-                return true;
-            case R.id.facebook:
-                Toast.makeText(this, "페이스북에 글 올리기",Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.instagram:
-                Toast.makeText(this, "인스타그램에 글 올리기",Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 */
-
-
-    public void shareKakaoWeb(){
-        try {
-            final KakaoLink kakaoLink2 = KakaoLink.getKakaoLink(this);
-            final KakaoTalkLinkMessageBuilder kakaoBuilder2 = kakaoLink2.createKakaoTalkLinkMessageBuilder();
-
-            /*메시지 추가*/
-            kakaoBuilder2.addText("제98회 전국 체육대회");
-
-            /*이미지 가로/세로 사이즈는 80px 보다 커야하며, 이미지 용량은 500kb 이하로 제한된다.*/
-            String url = "http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg";
-            kakaoBuilder2.addImage(url, 1080, 1920);
-
-            /*웹 실행버튼 추가*/
-            kakaoBuilder2.addWebButton("http://2017sports.chungbuk.go.kr/www/index.do");
-
-            /*메시지 발송*/
-            kakaoLink2.sendMessage(kakaoBuilder2, this);
-        } catch (KakaoParameterException e){
-            e.printStackTrace();
-        }
-    }
-
-    public void shareKakao(){
-        try {
-            final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
-            final KakaoTalkLinkMessageBuilder kakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
-
-            /*메시지 추가*/
-            kakaoBuilder.addText("제98회 전국 체육대회");
-
-            /*이미지 가로/세로 사이즈는 80px 보다 커야하며, 이미지 용량은 500kb 이하로 제한된다.*/
-            String url = "http://2017sports.chungbuk.go.kr/site/www/images/contents/img_poster2.jpg";
-            kakaoBuilder.addImage(url, 1080, 1920);
-
-            /*앱 실행버튼 추가*/
-            kakaoBuilder.addAppButton("모두의 체전 앱 실행하기");
-
-            /*메시지 발송*/
-            kakaoLink.sendMessage(kakaoBuilder, this);
-        } catch (KakaoParameterException e){
-            e.printStackTrace();
-        }
-    }
-
 }

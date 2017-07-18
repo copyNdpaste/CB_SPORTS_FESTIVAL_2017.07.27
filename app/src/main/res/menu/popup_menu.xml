@@ -27,11 +27,15 @@
         android:layout_height="wrap_content"
         android:title="페이스북"/>
 
-
     <item
         android:id="@+id/instagram"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="인스타그램" />
 
+    <item
+        android:id="@+id/twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:title="트위터" />
 </menu>
