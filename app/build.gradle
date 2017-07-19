@@ -27,8 +27,7 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-
-
+    compile 'com.github.clans:fab:1.6.2'
     // 카카오링크 sdk를 사용하기 위해 필요.
     compile group: 'com.kakao.sdk', name: 'kakaolink', version: project.KAKAO_SDK_VERSION
     //페이스북 sdk
@@ -43,5 +42,4 @@ dependencies {
 
     compile 'gr.pantrif:easy-android-splash-screen:0.0.1'
     testCompile 'junit:junit:4.12'
-
 }
