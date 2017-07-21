@@ -15,8 +15,8 @@
         </item>
         <item
             android:id="@+id/introduce"
-            android:title="대회소개"
-            android:icon="@drawable/ic_menu_slideshow"/>
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="대회소개" />
         <item android:title="경기일정"
             android:icon="@drawable/ic_menu_manage">
             <menu>
