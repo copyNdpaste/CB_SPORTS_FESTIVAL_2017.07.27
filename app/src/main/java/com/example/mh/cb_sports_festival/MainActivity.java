@@ -1,23 +1,27 @@
 package com.example.mh.cb_sports_festival;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.TabHost;
 import android.widget.Toast;
 
-import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
@@ -27,6 +31,10 @@ import com.kakao.kakaolink.KakaoLink;
 import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.kakao.util.KakaoParameterException;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -34,8 +42,11 @@ import java.net.URLEncoder;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    private static final int REQUEST_EXTERNAL_STORAGE_CODE = 1;
+    boolean permissionCheck = false;
+
     ViewPager viewPager;
-    ImageButton share;
 
     FloatingActionMenu materialDesignFAM;
     FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3, floatingActionButton4, floatingActionButton5;
@@ -50,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(viewPagerAdapter);
 
         //페이스북 API 사용
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        // FacebookSdk.sdkInitialize(getApplicationContext());
         AppEventsLogger.activateApp(this);
 
         materialDesignFAM = (FloatingActionMenu) findViewById(R.id.social_floating_menu);
@@ -59,86 +70,6 @@ public class MainActivity extends AppCompatActivity
         floatingActionButton3 = (FloatingActionButton) findViewById(R.id.floating_facebook);//페북 페이지
         floatingActionButton4 = (FloatingActionButton) findViewById(R.id.floating_instagram);//인스타그램 연결
         floatingActionButton5 = (FloatingActionButton) findViewById(R.id.floating_twitter);//트위터 연결
-/*
-        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-                Intent shareKakao = getOpenFacebookIntent(MainActivity.this);
-                startActivity(shareKakao);
-            }
-        });
-        floatingActionButton2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu second item clicked
-                Intent kakaoIntent = getOpenTwitterIntent(MainActivity.this);
-                startActivity(kakaoIntent);
-            }
-        });
-        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-                Intent facebookIntent = getOpenFacebookIntent(MainActivity.this);
-                startActivity(facebookIntent);
-            }
-        });
-
-        floatingActionButton4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-                Intent instagramIntent = getOpenInstagramIntent(MainActivity.this);
-                startActivity(instagramIntent);
-            }
-        });
-
-        floatingActionButton5.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO something when floating action menu first item clicked
-                Intent twitterIntent = getOpenTwitterIntent(MainActivity.this);
-                startActivity(twitterIntent);
-            }
-        });*/
-
-        share = (ImageButton) findViewById (R.id.share);
-
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 버튼 클릭시 팝업 메뉴가 나오게 하기
-                // PopupMenu 는 API 11 레벨부터 제공한다
-                PopupMenu popupMenu = new PopupMenu(MainActivity.this, share);
-                popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
-
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.kakao:
-                                Toast.makeText(MainActivity.this, "카카오톡으로 모두의 체전 알리기",Toast.LENGTH_SHORT).show();
-                                shareKakao();
-                                return true;
-                            case R.id.kakaoweb:
-                                Toast.makeText(MainActivity.this, "전국체전 홈페이지 알리기",Toast.LENGTH_SHORT).show();
-                                shareKakaoWeb();
-                                return true;
-                            case R.id.facebook:
-                                Toast.makeText(MainActivity.this, "페이스북에 글 올리기",Toast.LENGTH_SHORT).show();
-                                shareFacebook();
-                                return true;
-                            case R.id.instagram:
-                                Toast.makeText(MainActivity.this, "인스타그램에 글 올리기",Toast.LENGTH_SHORT).show();
-                                return true;
-                            case R.id.twitter:
-                                Toast.makeText(MainActivity.this, "트위터에 글 올리기",Toast.LENGTH_SHORT).show();
-                                shareTwitter();
-                                return true;
-                        }
-                        return true;
-                    }
-
-                });
-                popupMenu.show(); // 메뉴를 띄우기
-            }
-        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -153,7 +84,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TabHost host = (TabHost)findViewById(R.id.tabHost);  //탭바의 탭 호스트 정의
+        TabHost host = (TabHost) findViewById(R.id.tabHost);  //탭바의 탭 호스트 정의
         host.setup();
 
         //Tab 1
@@ -174,68 +105,47 @@ public class MainActivity extends AppCompatActivity
         spec.setIndicator("+");
         host.addTab(spec);
     }
-    /*
-    public static Intent getOpenKakaoIntent(Context context) {
-        try {
-            context.getPackageManager()
-                    .getPackageInfo("com.kakao.talk", 0); //Checks if FB is even installed.
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://2017sports.chungbuk.go.kr/www/index.do")); //Trys to make intent with FB's URI
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW,
-                  //  Uri.parse("https://www.facebook.com/karthikofficialpage")); //catches and opens a url to the desired page
-            Uri.parse("http://2017sports.chungbuk.go.kr/www/index.do"));//전국체전 홈페이지로 이동하기
-        }
 
-    }
-    public static Intent getOpenKakaoWebIntent(Context context) {
-        try {
-            context.getPackageManager()
-                    .getPackageInfo("com.facebook.cb", 0); //Checks if FB is even installed.
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("http://2017sports.chungbuk.go.kr/www/index.do")); //Trys to make intent with FB's URI
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW,
-                    //  Uri.parse("https://www.facebook.com/karthikofficialpage")); //catches and opens a url to the desired page
-                    Uri.parse("http://2017sports.chungbuk.go.kr/www/index.do"));//전국체전 홈페이지로 이동하기
+
+    public void onRequestPermission(){
+        int permissionReadStorage = ContextCompat.checkSelfPermission(getApplicationContext(),
+                android.Manifest.permission.READ_EXTERNAL_STORAGE);
+        int permissionWriteStorage = ContextCompat.checkSelfPermission(getApplicationContext(),
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if(permissionReadStorage == PackageManager.PERMISSION_DENIED ||
+                permissionWriteStorage == PackageManager.PERMISSION_DENIED){
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_EXTERNAL_STORAGE_CODE);
+        }
+        else{
+            permissionCheck = true;
         }
     }
-    public static Intent getOpenFacebookIntent(Context context) {
-        try {
-            context.getPackageManager()
-                    .getPackageInfo("com.facebook.cb", 0); //Checks if Twitter is even installed.
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.facebook.com/cb21sports/")); //Trys to make intent with Twitter's's URI
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.facebook.com/cb21sports/")); //catches and opens a url to the desired page
-        }
-    }
-    public static Intent getOpenInstagramIntent(Context context) {
-        try {
-            context.getPackageManager()
-                    .getPackageInfo("com.instagram.android", 0); //Checks if Instagram is even installed.
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.instagram.com/accounts/login/")); //Trys to make intent with Instagram's URI
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://www.instagram.com/accounts/login/")); //catches and opens a url to the desired page
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults){
+        switch(requestCode){
+            case REQUEST_EXTERNAL_STORAGE_CODE:
+                for(int i=0; i<permissions.length; i++){
+                    String permission = permissions[i];
+                    int grantResult = grantResults[i];
+                    if(permission.equals(android.Manifest.permission.READ_EXTERNAL_STORAGE)){
+                        if(grantResult == PackageManager.PERMISSION_GRANTED)
+                        {
+                            Toast.makeText(this,"허용했으니 가능함", Toast.LENGTH_SHORT).show();
+                            permissionCheck = true;
+                        }
+                        else{
+                            Toast.makeText(this, "허용하지 않으면 공유 못함",Toast.LENGTH_SHORT).show();
+                            permissionCheck = false;
+                        }
+                    }
+                }
+                break;
         }
     }
 
-    public static Intent getOpenTwitterIntent(Context context) {
-        try {
-            context.getPackageManager()
-                    .getPackageInfo("com.twitter.android", 0); //Checks if YT is even installed.
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://twitter.com/")); //Trys to make intent with YT's URI
-        } catch (Exception e) {
-            return new Intent(Intent.ACTION_VIEW,
-                    Uri.parse("https://twitter.com/")); //catches and opens a url to the desired page
-        }
-    }
-*/
-    public void shareKakao(){
+    public void shareKakao() {
         try {
             final KakaoLink kakaoLink = KakaoLink.getKakaoLink(this);
             final KakaoTalkLinkMessageBuilder kakaoBuilder = kakaoLink.createKakaoTalkLinkMessageBuilder();
@@ -252,11 +162,12 @@ public class MainActivity extends AppCompatActivity
 
             /*메시지 발송*/
             kakaoLink.sendMessage(kakaoBuilder, this);
-        } catch (KakaoParameterException e){
+        } catch (KakaoParameterException e) {
             e.printStackTrace();
         }
     }
-    public void shareKakaoWeb(){
+
+    public void shareKakaoWeb() {
         try {
             final KakaoLink kakaoLink2 = KakaoLink.getKakaoLink(this);
             final KakaoTalkLinkMessageBuilder kakaoBuilder2 = kakaoLink2.createKakaoTalkLinkMessageBuilder();
@@ -273,11 +184,12 @@ public class MainActivity extends AppCompatActivity
 
             /*메시지 발송*/
             kakaoLink2.sendMessage(kakaoBuilder2, this);
-        } catch (KakaoParameterException e){
+        } catch (KakaoParameterException e) {
             e.printStackTrace();
         }
     }
-    public void shareFacebook(){
+
+    public void shareFacebook() {
         ShareLinkContent content = new ShareLinkContent.Builder()
                 //공유될 링크
                 .setContentUrl(Uri.parse("https://www.facebook.com/cb21sports/"))
@@ -286,14 +198,47 @@ public class MainActivity extends AppCompatActivity
 
         shareDialog.show(content, ShareDialog.Mode.FEED); //AUTOMATIC, FEED, NATIVE, WEB 등의 다이얼로그 형식이 있다.
     }
-    public void shareInstagram(){
-        ShareLinkContent content = new ShareLinkContent.Builder()
-                //공유될 링크
-                .setContentUrl(Uri.parse("https://www.instagram.com/"))
-                .build();
-        ShareDialog shareDialog = new ShareDialog(this);
 
-        shareDialog.show(content, ShareDialog.Mode.FEED); //AUTOMATIC, FEED, NATIVE, WEB 등의 다이얼로그 형식이 있다.
+    public void shareInstagram() {
+        onRequestPermission();
+        if (permissionCheck) {
+            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sports);
+            String storage = Environment.getExternalStorageDirectory().getAbsolutePath();
+            String fileName = "이미지명.png";
+
+            String folderName = "/폴더명/";
+            String fullPath = storage + folderName;
+            File filePath;
+
+            try {
+                filePath = new File(fullPath);
+                if (!filePath.isDirectory()) {
+                    filePath.mkdirs();
+                }
+                FileOutputStream fos = new FileOutputStream(fullPath + fileName);
+                bm.compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.flush();
+                fos.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Intent share = new Intent(Intent.ACTION_SEND);
+            share.setType("image/*");
+            Uri uri = Uri.fromFile(new File(fullPath, fileName));
+            try {
+                share.putExtra(Intent.EXTRA_STREAM, uri);
+                share.putExtra(Intent.EXTRA_TEXT, "텍스트는 지원하지 않음");
+                share.setPackage("com.instagram.android");
+                startActivity(share);
+            } catch (ActivityNotFoundException e) {
+                Toast.makeText(this, "인스타그램이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
     public void shareTwitter(){
         String strLink = null;
@@ -350,21 +295,19 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.notice) {
+
         } else if (id == R.id.news) {
-            Toast.makeText(MainActivity.this,"dddd",Toast.LENGTH_SHORT).show();
+
         } else if (id == R.id.introduce) {
             new TabActivity();
         } else if (id == R.id.game_date) {
-            Toast.makeText(MainActivity.this,"dddd",Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.game_event) {
-            Toast.makeText(MainActivity.this,"dddd",Toast.LENGTH_SHORT).show();
-        }
 
+        } else if (id == R.id.game_event) {
+
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.END);
         return true;
