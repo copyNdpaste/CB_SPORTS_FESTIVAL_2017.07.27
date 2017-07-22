@@ -1,16 +1,9 @@
 package com.example.mh.cb_sports_festival;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -20,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
-import android.widget.Toast;
 
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.share.model.ShareLinkContent;
@@ -31,20 +23,12 @@ import com.kakao.kakaolink.KakaoLink;
 import com.kakao.kakaolink.KakaoTalkLinkMessageBuilder;
 import com.kakao.util.KakaoParameterException;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
-    private static final int REQUEST_EXTERNAL_STORAGE_CODE = 1;
-    boolean permissionCheck = false;
 
     ViewPager viewPager;
 
@@ -99,50 +83,6 @@ public class MainActivity extends AppCompatActivity
         spec.setIndicator("대회뉴스");
         host.addTab(spec);
 
-        //Tab 3
-        spec = host.newTabSpec("+");
-        spec.setContent(R.id.tab3);
-        spec.setIndicator("+");
-        host.addTab(spec);
-    }
-
-
-    public void onRequestPermission(){
-        int permissionReadStorage = ContextCompat.checkSelfPermission(getApplicationContext(),
-                android.Manifest.permission.READ_EXTERNAL_STORAGE);
-        int permissionWriteStorage = ContextCompat.checkSelfPermission(getApplicationContext(),
-                android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if(permissionReadStorage == PackageManager.PERMISSION_DENIED ||
-                permissionWriteStorage == PackageManager.PERMISSION_DENIED){
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_EXTERNAL_STORAGE_CODE);
-        }
-        else{
-            permissionCheck = true;
-        }
-    }
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults){
-        switch(requestCode){
-            case REQUEST_EXTERNAL_STORAGE_CODE:
-                for(int i=0; i<permissions.length; i++){
-                    String permission = permissions[i];
-                    int grantResult = grantResults[i];
-                    if(permission.equals(android.Manifest.permission.READ_EXTERNAL_STORAGE)){
-                        if(grantResult == PackageManager.PERMISSION_GRANTED)
-                        {
-                            Toast.makeText(this,"허용했으니 가능함", Toast.LENGTH_SHORT).show();
-                            permissionCheck = true;
-                        }
-                        else{
-                            Toast.makeText(this, "허용하지 않으면 공유 못함",Toast.LENGTH_SHORT).show();
-                            permissionCheck = false;
-                        }
-                    }
-                }
-                break;
-        }
     }
 
     public void shareKakao() {
@@ -200,45 +140,8 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void shareInstagram() {
-        onRequestPermission();
-        if (permissionCheck) {
-            Bitmap bm = BitmapFactory.decodeResource(getResources(), R.drawable.sports);
-            String storage = Environment.getExternalStorageDirectory().getAbsolutePath();
-            String fileName = "이미지명.png";
-
-            String folderName = "/폴더명/";
-            String fullPath = storage + folderName;
-            File filePath;
-
-            try {
-                filePath = new File(fullPath);
-                if (!filePath.isDirectory()) {
-                    filePath.mkdirs();
-                }
-                FileOutputStream fos = new FileOutputStream(fullPath + fileName);
-                bm.compress(Bitmap.CompressFormat.PNG, 100, fos);
-                fos.flush();
-                fos.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            Intent share = new Intent(Intent.ACTION_SEND);
-            share.setType("image/*");
-            Uri uri = Uri.fromFile(new File(fullPath, fileName));
-            try {
-                share.putExtra(Intent.EXTRA_STREAM, uri);
-                share.putExtra(Intent.EXTRA_TEXT, "텍스트는 지원하지 않음");
-                share.setPackage("com.instagram.android");
-                startActivity(share);
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(this, "인스타그램이 설치되어 있지 않습니다.", Toast.LENGTH_SHORT).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/"));
+        startActivity(intent);
     }
     public void shareTwitter(){
         String strLink = null;
@@ -267,6 +170,22 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(this, ServiceCall.class);
         startActivity(intent);
     }
+    public void notice1Clicked(View V) { //공지1클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=98&bbsNo=1&nttNo=581"));
+        startActivity(intent);
+    }
+    public void notice2Clicked(View V) { //공지2클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=98&bbsNo=1&nttNo=561&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void tabhostplusClicked(View V) { //공지 + 클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=1&key=98"));
+        startActivity(intent);
+    }
+    public void ontwitterClicked(View V) { //트위터 글올리기로 이동
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=1&key=98"));
+        startActivity(intent);
+    }
     public void onkakaoClicked(View V) { //카카오로 모두의 체전 앱 공유
          shareKakao();
     }
@@ -278,9 +197,6 @@ public class MainActivity extends AppCompatActivity
     }
     public void oninstagramClicked(View V) { //인스타그램으로 이동
         shareInstagram();
-    }
-    public void ontwitterClicked(View V) { //트위터 글올리기로 이동
-        shareTwitter();
     }
     @Override
     public void onBackPressed() {
@@ -298,7 +214,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.notice) {
-
+            Intent intent = new Intent(this, TabActivity.class);
+            startActivity(intent);
         } else if (id == R.id.news) {
 
         } else if (id == R.id.introduce) {

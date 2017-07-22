@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent" >
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -147,66 +152,102 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp" />
 
-<!--탭바 생성-->
+        <!--탭바 생성-->
+        <ImageButton
+            android:id="@+id/tabhostplus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginBottom="-1dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="#42A5F5"
+            android:elevation="0dp"
+            android:onClick="tabhostplusClicked"
+            android:scaleType="fitCenter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/toolbar"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="0.421"
+            app:srcCompat="@android:drawable/btn_plus" />
+
         <TabHost
             android:id="@+id/tabHost"
-            android:layout_width="333dp"
-            android:layout_height="130dp"
+            android:layout_width="match_parent"
+            android:layout_height="362dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView14"
-            app:layout_constraintVertical_bias="0.0"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp">
+            app:layout_constraintVertical_bias="0.0">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:weightSum="1">
 
                         <TabWidget
                             android:id="@android:id/tabs"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="#cccccc">
+                            android:background="#42A5F5"
+                            android:layout_weight="0.57">
 
                         </TabWidget>
 
                         <FrameLayout
                             android:id="@android:id/tabcontent"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4.13">
 
                                 <LinearLayout
                                     android:id="@+id/tab1"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:background="#ffc916"
-                                    android:orientation="vertical">
+                                    android:layout_height="282dp"
+                                    android:background="#2196F3"
 
-                                        <ScrollView
+                                    android:orientation="vertical"
+                                    android:weightSum="1">
+
+                                        <TextView
+                                            android:id="@+id/textView13"
                                             android:layout_width="match_parent"
-                                            android:layout_height="wrap_content">
+                                            android:layout_height="wrap_content"
+                                            android:onClick="notice1Clicked"
+                                            android:text="
+전국 장애인 체육대회 단체상 시상명칭 공모전 안내"
+                                            android:textColor="@color/cardview_light_background" />
 
-                                                <TextView
-                                                    android:id="@+id/textView12"
-                                                    android:layout_width="match_parent"
-                                                    android:layout_height="match_parent"
-                                                    android:text="ㅇㅇㅇㅇ" />
-                                        </ScrollView>
+                                        <TextView
+                                            android:id="@+id/textView12"
+                                            android:layout_width="354dp"
+                                            android:layout_height="wrap_content"
+                                            android:onClick="notice2Clicked"
+                                            android:text="
+쇼미더체전!전국/장애인체전 홍보를 위한 통화연결음 서비스 "
+                                            android:textColor="@color/cardview_light_background" />
+
+
                                 </LinearLayout>
 
                                 <LinearLayout
                                     android:id="@+id/tab2"
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
+                                    android:layout_height="282dp"
                                     android:background="#da8200"
                                     android:orientation="vertical">
 
@@ -214,21 +255,9 @@
                                             android:layout_width="match_parent"
                                             android:layout_height="match_parent"
                                             android:text="탭2" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/tab3"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="#5b89ff"
-                                    android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:text="탭3" />
 
                                 </LinearLayout>
+
                         </FrameLayout>
 
                 </LinearLayout>
@@ -253,8 +282,8 @@
             fab:menu_fab_label="전국체전 알리기"
             fab:menu_fab_size="normal"
             fab:menu_icon="@drawable/fab_add"
-            fab:menu_labels_colorNormal="#333"
-            fab:menu_labels_colorPressed="#444"
+            fab:menu_labels_colorNormal="#5b89ff"
+            fab:menu_labels_colorPressed="#5b89dd"
             fab:menu_labels_colorRipple="#66efecec"
             fab:menu_labels_cornerRadius="3dp"
             fab:menu_labels_ellipsize="none"
@@ -320,3 +349,4 @@
         </com.github.clans.fab.FloatingActionMenu>
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>
