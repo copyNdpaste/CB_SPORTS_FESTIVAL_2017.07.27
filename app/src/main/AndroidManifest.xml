@@ -50,7 +50,7 @@
             android:authorities="com.facebook.app.FacebookContentProvider1485345334820436"
             android:exported="true" />
 
-        <activity android:name=".ServiceCall"></activity>
+        <activity android:name=".ServiceCall" />
     </application>
 
 </manifest>

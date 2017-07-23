@@ -6,37 +6,52 @@
                 <item
                     android:id="@+id/notice"
                     android:title="공지사항"
-                    android:icon="@drawable/ic_menu_camera"/>
+                    android:icon="@drawable/weight_lifting"/>
                 <item
                     android:id="@+id/news"
-                    android:title="뉴스"
-                    android:icon="@drawable/ic_menu_gallery"/>
+                    android:title="대회뉴스"
+                    android:icon="@drawable/swimming"/>
+                <item
+                    android:id="@+id/introduce"
+                    android:title="대회소개"
+                    android:icon="@drawable/soccer"/>
             </menu>
         </item>
-        <item
-            android:id="@+id/introduce"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="대회소개" />
-        <item android:title="경기일정"
-            android:icon="@drawable/ic_menu_manage">
+        <item android:title="경기정보">
             <menu>
                 <item
-                    android:id="@+id/game_date"
-                    android:title="날짜별"
-                    android:icon="@drawable/ic_menu_manage"/>
+                    android:id="@+id/game_introduce"
+                    android:title="경기소개"
+                    android:icon="@drawable/basketball"/>
                 <item
-                    android:id="@+id/game_event"
-                    android:icon="@drawable/ic_menu_manage"
-                    android:title="종목별" />
+                    android:id="@+id/game_date"
+                    android:title="경기일정"
+                    android:icon="@drawable/judo"/>
+                <item
+                    android:id="@+id/stadium"
+                    android:title="경기장 소개"
+                    android:icon="@drawable/triathlon"/>
+                <item
+                    android:id="@+id/total_ranking"
+                    android:title="종합순위"
+                    android:icon="@drawable/modern_pentathlon"/>
             </menu>
         </item>
-        <item
-            android:id="@+id/rank"
-            android:title="종합순위"
-            android:icon="@drawable/ic_menu_manage"/>
-        <item
-            android:id="@+id/restaurant"
-            android:title="맛집,숙박"
-            android:icon="@drawable/ic_menu_manage"/>
+        <item android:title="금강산도 식후경">
+            <menu>
+                <item
+                    android:id="@+id/hotplace"
+                    android:title="경기장 주변 맛집/숙박"
+                    android:icon="@drawable/hotplace"/>
+            </menu>
+        </item>
+        <item android:title="안녕하세요 고객님">
+            <menu>
+                <item
+                    android:id="@+id/service_call"
+                    android:title="고객센터"
+                    android:icon="@drawable/service_call"/>
+            </menu>
+        </item>
     </group>
 </menu>

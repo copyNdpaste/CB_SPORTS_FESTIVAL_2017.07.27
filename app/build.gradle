@@ -32,7 +32,7 @@ dependencies {
     //페이스북 sdk
     //  compile 'com.facebook.android:facebook-android-sdk:[4,5)'
     // compile 'com.android.support:support-v7:25.3.1'
-    
+
 
     compile 'com.github.clans:fab:1.6.2'
     compile 'com.facebook.android:facebook-android-sdk:4.24.0'

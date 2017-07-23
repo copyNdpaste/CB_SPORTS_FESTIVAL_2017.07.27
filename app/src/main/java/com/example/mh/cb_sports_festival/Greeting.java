@@ -11,10 +11,22 @@ import android.view.ViewGroup;
  */
 
 public class Greeting extends Fragment{
+
+    public Greeting(){
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.greeting_tab, container, false);
+    }
+/*
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.greeting_tab, container, false);
         return rootView;
-    }
+    }*/
+
 }

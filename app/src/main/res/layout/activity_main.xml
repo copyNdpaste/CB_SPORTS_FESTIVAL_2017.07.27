@@ -13,7 +13,7 @@
     android:background="@android:color/background_light"
     tools:context="com.example.mh.cb_sports_festival.MainActivity">
 
-        <ImageButton
+    <ImageButton
             android:id="@+id/imageButton15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +23,8 @@
             android:onClick="onButton15Clicked"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageButton9"
-            app:srcCompat="@drawable/customerservice" />
+            app:srcCompat="@drawable/customerservice"
+            android:layout_marginTop="8dp" />
 
         <ImageButton
             android:id="@+id/imageButton8"
@@ -37,7 +38,8 @@
             app:layout_constraintLeft_toRightOf="@+id/imageButton6"
             app:layout_constraintRight_toLeftOf="@+id/imageButton9"
             app:layout_constraintTop_toBottomOf="@+id/viewPager"
-            app:srcCompat="@drawable/sports" />
+            app:srcCompat="@drawable/sports"
+            android:layout_marginTop="8dp" />
 
         <ImageButton
             android:id="@+id/imageButton9"
@@ -48,7 +50,8 @@
             android:background="#00000000"
             app:layout_constraintRight_toRightOf="parent"
             app:srcCompat="@drawable/schedule"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
+            app:layout_constraintTop_toBottomOf="@+id/viewPager"
+            android:layout_marginTop="8dp" />
 
         <ImageButton
             android:id="@+id/imageButton6"
@@ -61,7 +64,8 @@
             android:layout_marginLeft="24dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewPager"
-            android:layout_marginStart="24dp" />
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/viewPager"
@@ -71,7 +75,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
 
-            android:layout_marginTop="50dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -105,49 +108,44 @@
             app:srcCompat="@drawable/homebutton"
             android:layout_marginStart="16dp" />
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:layout_marginStart="8dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp">
-        </android.support.design.widget.AppBarLayout>
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="50dp"
-            android:layout_height="56dp"
-            android:background="@android:color/holo_blue_light"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:layout_constraintLeft_toRightOf="@+id/imageButton5"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:layout_marginStart="8dp" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="50dp"
+        android:layout_height="54dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@android:color/holo_blue_light"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toRightOf="@+id/imageButton5"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <ImageView
-            android:id="@+id/imageView13"
+        <ImageButton
+            android:id="@+id/imageButton13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ranking"
             android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/cardview_light_background"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageButton6"
-            android:layout_marginStart="24dp" />
+            app:srcCompat="@drawable/ranking" />
 
-        <ImageView
-            android:id="@+id/imageView14"
+        <ImageButton
+            android:id="@+id/imageButton14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/cardview_light_background"
             android:onClick="onButton5Clicked"
-            app:srcCompat="@drawable/accomodationrestaurant"
             app:layout_constraintTop_toBottomOf="@+id/imageButton8"
-            app:layout_constraintLeft_toRightOf="@+id/imageView13"
+            app:srcCompat="@drawable/accomodationrestaurant"
+            app:layout_constraintLeft_toRightOf="@+id/imageButton13"
             android:layout_marginLeft="8dp"
-            app:layout_constraintRight_toLeftOf="@+id/imageView15"
+            app:layout_constraintRight_toLeftOf="@+id/imageButton15"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp" />
@@ -157,7 +155,6 @@
             android:id="@+id/tabhostplus"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="-1dp"
             android:layout_marginEnd="5dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="5dp"
@@ -168,16 +165,16 @@
             android:onClick="tabhostplusClicked"
             android:scaleType="fitCenter"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.991"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="@+id/toolbar"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.421"
+            app:layout_constraintVertical_bias="0.392"
             app:srcCompat="@android:drawable/btn_plus" />
 
         <TabHost
             android:id="@+id/tabHost"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="362dp"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="8dp"
@@ -190,7 +187,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView14"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton14"
             app:layout_constraintVertical_bias="0.0">
 
                 <LinearLayout
@@ -199,16 +196,16 @@
                     android:orientation="vertical"
                     android:weightSum="1">
 
-                        <TabWidget
-                            android:id="@android:id/tabs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#42A5F5"
-                            android:layout_weight="0.57">
+                    <TabWidget
+                        android:id="@android:id/tabs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.57"
+                        android:background="#42A5F5">
 
-                        </TabWidget>
+                    </TabWidget>
 
-                        <FrameLayout
+                    <FrameLayout
                             android:id="@android:id/tabcontent"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -256,6 +253,8 @@
                                             android:layout_height="match_parent"
                                             android:text="탭2" />
 
+
+
                                 </LinearLayout>
 
                         </FrameLayout>
@@ -302,7 +301,8 @@
             fab:menu_shadowRadius="4dp"
             fab:menu_shadowXOffset="1dp"
             fab:menu_shadowYOffset="4dp"
-            fab:menu_showShadow="false">
+            fab:menu_showShadow="false"
+            android:layout_marginEnd="8dp">
 
                 <com.github.clans.fab.FloatingActionButton
                     android:id="@+id/floating_kakaotalk"
@@ -345,8 +345,20 @@
                     android:onClick="ontwitterClicked"
                     android:src="@mipmap/twitter"
                     fab:fab_size="mini" />
-
         </com.github.clans.fab.FloatingActionMenu>
+
+    <FrameLayout
+        android:id="@+id/content_fragment_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
 
 </android.support.constraint.ConstraintLayout>
 </ScrollView>

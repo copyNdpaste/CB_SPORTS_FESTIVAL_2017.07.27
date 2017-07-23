@@ -24,7 +24,7 @@ public class SplashScreen extends AppCompatActivity {
         EasySplashScreen config = new EasySplashScreen(SplashScreen.this)
                 //.withFullScreen()
                 .withTargetActivity(MainActivity.class)
-                .withSplashTimeOut(1000)
+                .withSplashTimeOut(500)
                 .withBackgroundColor(Color.parseColor("#ffffffff")) //스플래시 배경 색
 
                 //.withHeaderText("모두의 체전에 오신 것을 환영합니다.")

@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -13,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.share.model.ShareLinkContent;
@@ -40,9 +43,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homeand_navigation);
 
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
-        viewPager.setAdapter(viewPagerAdapter);
+
 
         //페이스북 API 사용
         // FacebookSdk.sdkInitialize(getApplicationContext());
@@ -83,6 +84,9 @@ public class MainActivity extends AppCompatActivity
         spec.setIndicator("대회뉴스");
         host.addTab(spec);
 
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(this);
+        viewPager.setAdapter(viewPagerAdapter);
     }
 
     public void shareKakao() {
@@ -213,20 +217,53 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+        Fragment fragment = null;
+
         if (id == R.id.notice) {
-            Intent intent = new Intent(this, TabActivity.class);
+            Toast.makeText(this, "공지사항",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=1&key=98"));
             startActivity(intent);
         } else if (id == R.id.news) {
-
+            Toast.makeText(this, "대회뉴스",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=21&key=99"));
+            startActivity(intent);
         } else if (id == R.id.introduce) {
-            new TabActivity();
+            Toast.makeText(this, "대회소개",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, TabActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.game_introduce) {
+            Toast.makeText(this, "경기 소개",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectSportList.do?key=82"));
+            startActivity(intent);
         } else if (id == R.id.game_date) {
+            Toast.makeText(this, "경기 일정",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/contents.do?key=83"));
+            startActivity(intent);
+        } else if (id == R.id.stadium) {
+            Toast.makeText(this, "경기장 소개",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectStadiumIntroList.do?key=85"));
+            startActivity(intent);
+        } else if (id == R.id.total_ranking) {
+            Toast.makeText(this, "종합 순위 ",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://national.sports.or.kr/rankall.do?kind=indexRankAll&gubun=03"));
+            startActivity(intent);
+        } else if (id == R.id.hotplace) {
+            Toast.makeText(this, "경기장 주변 맛집/숙박",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://tour.chungbuk.go.kr/home/sub.php?menukey=225"));
+            startActivity(intent);
+        } else if (id == R.id.service_call) {
+            Toast.makeText(this, "고객센터",Toast.LENGTH_SHORT).show();
+        }
 
-        } else if (id == R.id.game_event) {
-
+        if(fragment != null){
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_fragment_layout,fragment);
+            ft.addToBackStack(null);
+            ft.commit();
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
