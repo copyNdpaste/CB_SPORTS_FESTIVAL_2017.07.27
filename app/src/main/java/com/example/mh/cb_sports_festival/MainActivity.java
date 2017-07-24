@@ -178,10 +178,49 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=98&bbsNo=1&nttNo=561&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
         startActivity(intent);
     }
+    public void notice3Clicked(View V) { //공지3클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=98&bbsNo=1&nttNo=581&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void notice4Clicked(View V) { //공지4클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=98&bbsNo=1&nttNo=562&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void notice5Clicked(View V) { //공지5클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=98&bbsNo=1&nttNo=601&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void news1Clicked(View V) { //뉴스1클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=99&bbsNo=21&nttNo=463&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void news2Clicked(View V) { //뉴스2클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=99&bbsNo=21&nttNo=464&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void news3Clicked(View V) { //뉴스3클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=99&bbsNo=21&nttNo=481&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void news4Clicked(View V) { //뉴스4클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=99&bbsNo=21&nttNo=481&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+    public void news5Clicked(View V) { //뉴스5클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttView.do?key=99&bbsNo=21&nttNo=466&searchCtgry=&searchCnd=all&searchKrwd=&pageIndex=1&integrDeptCode="));
+        startActivity(intent);
+    }
+
+
     public void tabhostplusClicked(View V) { //공지 + 클릭
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=1&key=98"));
         startActivity(intent);
     }
+    public void tabhostplus2Clicked(View V) { //뉴스 + 클릭
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=21&key=99"));
+        startActivity(intent);
+    }
+
     public void ontwitterClicked(View V) { //트위터 글올리기로 이동
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=1&key=98"));
         startActivity(intent);

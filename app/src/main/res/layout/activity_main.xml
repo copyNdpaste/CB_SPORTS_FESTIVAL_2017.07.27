@@ -2,351 +2,420 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="fill_parent"
-    android:layout_width="fill_parent" >
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/background_light"
-    tools:context="com.example.mh.cb_sports_festival.MainActivity">
+    android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/imageButton15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:background="@color/cardview_light_background"
-            android:onClick="onButton15Clicked"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton9"
-            app:srcCompat="@drawable/customerservice" />
-
-        <ImageButton
-            android:id="@+id/imageButton8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:background="#00000000"
-            app:layout_constraintLeft_toRightOf="@+id/imageButton6"
-            app:layout_constraintRight_toLeftOf="@+id/imageButton9"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager"
-            app:srcCompat="@drawable/sports" />
-
-        <ImageButton
-            android:id="@+id/imageButton9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginRight="24dp"
-            android:background="#00000000"
-            app:layout_constraintRight_toRightOf="parent"
-            app:srcCompat="@drawable/schedule"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager" />
-
-        <ImageButton
-            android:id="@+id/imageButton6"
-            style="@style/Widget.AppCompat.ImageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#00000000"
-            android:onClick="onButton1Clicked"
-            app:srcCompat="@drawable/stardium"
-            android:layout_marginLeft="24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager"
-            android:layout_marginStart="24dp" />
-
-        <android.support.v4.view.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="368dp"
-            android:layout_height="115dp"
-
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-
-            android:layout_marginTop="50dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/imageButton7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="8dp"
-            android:background="#00000000"
-            app:layout_constraintLeft_toRightOf="@+id/imageButton1"
-            app:layout_constraintRight_toLeftOf="@+id/imageButton3"
-            app:layout_constraintTop_toBottomOf="@+id/viewPager"
-            app:srcCompat="@drawable/sports" />
-        </android.support.v4.view.ViewPager>
-
-        <ImageButton
-            android:id="@+id/imageButton5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@android:color/background_light"
-            android:onClick="onButtonHomeClicked"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/homebutton"
-            android:layout_marginStart="16dp" />
-
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            android:layout_marginStart="8dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="8dp">
-        </android.support.design.widget.AppBarLayout>
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="50dp"
-            android:layout_height="56dp"
-            android:background="@android:color/holo_blue_light"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:layout_constraintLeft_toRightOf="@+id/imageButton5"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintHorizontal_bias="1.0"
-            android:layout_marginStart="8dp" />
-
-        <ImageView
-            android:id="@+id/imageView13"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ranking"
-            android:layout_marginLeft="24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton6"
-            android:layout_marginStart="24dp" />
-
-        <ImageView
-            android:id="@+id/imageView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="onButton5Clicked"
-            app:srcCompat="@drawable/accomodationrestaurant"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton8"
-            app:layout_constraintLeft_toRightOf="@+id/imageView13"
-            android:layout_marginLeft="8dp"
-            app:layout_constraintRight_toLeftOf="@+id/imageView15"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp" />
-
-        <!--탭바 생성-->
-        <ImageButton
-            android:id="@+id/tabhostplus"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginBottom="-1dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:background="#42A5F5"
-            android:elevation="0dp"
-            android:onClick="tabhostplusClicked"
-            android:scaleType="fitCenter"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="@+id/toolbar"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.421"
-            app:srcCompat="@android:drawable/btn_plus" />
-
-        <TabHost
-            android:id="@+id/tabHost"
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="362dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView14"
-            app:layout_constraintVertical_bias="0.0">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:weightSum="1">
-
-                        <TabWidget
-                            android:id="@android:id/tabs"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="#42A5F5"
-                            android:layout_weight="0.57">
-
-                        </TabWidget>
-
-                        <FrameLayout
-                            android:id="@android:id/tabcontent"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="4.13">
-
-                                <LinearLayout
-                                    android:id="@+id/tab1"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="282dp"
-                                    android:background="#2196F3"
-
-                                    android:orientation="vertical"
-                                    android:weightSum="1">
-
-                                        <TextView
-                                            android:id="@+id/textView13"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:onClick="notice1Clicked"
-                                            android:text="
-전국 장애인 체육대회 단체상 시상명칭 공모전 안내"
-                                            android:textColor="@color/cardview_light_background" />
-
-                                        <TextView
-                                            android:id="@+id/textView12"
-                                            android:layout_width="354dp"
-                                            android:layout_height="wrap_content"
-                                            android:onClick="notice2Clicked"
-                                            android:text="
-쇼미더체전!전국/장애인체전 홍보를 위한 통화연결음 서비스 "
-                                            android:textColor="@color/cardview_light_background" />
-
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:id="@+id/tab2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="282dp"
-                                    android:background="#da8200"
-                                    android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:text="탭2" />
-
-                                </LinearLayout>
-
-                        </FrameLayout>
-
-                </LinearLayout>
-        </TabHost>
-
-        <com.github.clans.fab.FloatingActionMenu
-            android:id="@+id/social_floating_menu"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            fab:menu_animationDelayPerItem="55"
-            fab:menu_backgroundColor="@android:color/transparent"
-            fab:menu_buttonSpacing="0dp"
-            fab:menu_colorNormal="#808080"
-            fab:menu_colorPressed="#da226f"
-            fab:menu_colorRipple="#99d4d4d4"
-            fab:menu_fab_label="전국체전 알리기"
-            fab:menu_fab_size="normal"
-            fab:menu_icon="@drawable/fab_add"
-            fab:menu_labels_colorNormal="#5b89ff"
-            fab:menu_labels_colorPressed="#5b89dd"
-            fab:menu_labels_colorRipple="#66efecec"
-            fab:menu_labels_cornerRadius="3dp"
-            fab:menu_labels_ellipsize="none"
-            fab:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
-            fab:menu_labels_margin="0dp"
-            fab:menu_labels_maxLines="-1"
-            fab:menu_labels_padding="8dp"
-            fab:menu_labels_position="left"
-            fab:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
-            fab:menu_labels_showShadow="false"
-            fab:menu_labels_singleLine="false"
-            fab:menu_labels_textColor="#f2f1f1"
-            fab:menu_labels_textSize="15sp"
-            fab:menu_openDirection="up"
-            fab:menu_shadowColor="#66aff198"
-            fab:menu_shadowRadius="4dp"
-            fab:menu_shadowXOffset="1dp"
-            fab:menu_shadowYOffset="4dp"
-            fab:menu_showShadow="false">
+            android:background="@android:color/background_light"
+            tools:context="com.example.mh.cb_sports_festival.MainActivity">
 
-                <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/floating_kakaotalk"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:onClick="onkakaoClicked"
-                    android:src="@mipmap/kakaotalk"
-                    fab:fab_size="mini"
-                    fab:menu_fab_label="전국체전 알리기"
-                    />
+                <ImageButton
+                    android:id="@+id/imageButton5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@android:color/background_light"
+                    android:onClick="onButtonHomeClicked"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/homebutton" />
 
-                <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/floating_kakaotalkweb"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:onClick="onkakaowebClicked"
-                    android:src="@mipmap/kakaotalk"
-                    fab:fab_size="mini" />
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="50dp"
+                    android:layout_height="56dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@android:color/holo_blue_light"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintLeft_toRightOf="@+id/imageButton5"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-                <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/floating_facebook"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:onClick="onfacebookClicked"
-                    android:src="@mipmap/facebook"
-                    fab:fab_size="mini" />
+                <ImageButton
+                    android:id="@+id/imageButton15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:background="@color/cardview_light_background"
+                    android:onClick="onButton15Clicked"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton9"
+                    app:srcCompat="@drawable/customerservice" />
 
-                <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/floating_instagram"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:onClick="oninstagramClicked"
-                    android:src="@mipmap/instagram"
-                    fab:fab_size="mini" />
+                <ImageButton
+                    android:id="@+id/imageButton8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#00000000"
+                    app:layout_constraintHorizontal_bias="0.51"
+                    app:layout_constraintLeft_toRightOf="@+id/imageButton6"
+                    app:layout_constraintRight_toLeftOf="@+id/imageButton9"
+                    app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                    app:srcCompat="@drawable/sports" />
 
-                <com.github.clans.fab.FloatingActionButton
-                    android:id="@+id/floating_twitter"
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:onClick="ontwitterClicked"
-                    android:src="@mipmap/twitter"
-                    fab:fab_size="mini" />
+                <ImageButton
+                    android:id="@+id/imageButton9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#00000000"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                    app:srcCompat="@drawable/schedule" />
 
-        </com.github.clans.fab.FloatingActionMenu>
+                <ImageButton
+                    android:id="@+id/imageButton6"
+                    style="@style/Widget.AppCompat.ImageButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="15dp"
+                    android:background="#00000000"
+                    android:onClick="onButton1Clicked"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                    app:srcCompat="@drawable/stardium" />
 
-</android.support.constraint.ConstraintLayout>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager"
+                    android:layout_width="368dp"
+                    android:layout_height="115dp"
+
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageButton
+                            android:id="@+id/imageButton7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="8dp"
+                            android:background="#00000000"
+                            app:layout_constraintLeft_toRightOf="@+id/imageButton1"
+                            app:layout_constraintRight_toLeftOf="@+id/imageButton3"
+                            app:layout_constraintTop_toBottomOf="@+id/viewPager"
+                            app:srcCompat="@drawable/sports" />
+                </android.support.v4.view.ViewPager>
+
+                <ImageView
+                    android:id="@+id/imageView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="24dp"
+                    android:layout_marginStart="24dp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton6"
+                    app:srcCompat="@drawable/ranking" />
+
+                <ImageView
+                    android:id="@+id/imageView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="0dp"
+                    android:onClick="onButton5Clicked"
+                    app:layout_constraintHorizontal_bias="0.51"
+                    app:layout_constraintLeft_toRightOf="@+id/imageView13"
+                    app:layout_constraintRight_toLeftOf="@+id/imageButton15"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton8"
+                    app:srcCompat="@drawable/accomodationrestaurant" />
+
+                <!--탭바 생성-->
+
+                <TabHost
+                    android:id="@+id/tabHost"
+                    android:layout_width="389dp"
+                    android:layout_height="330dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="9dp"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView14"
+                    tools:layout_editor_absoluteX="11dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:weightSum="1">
+
+                                <TabWidget
+                                    android:id="@android:id/tabs"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.57"
+                                    android:background="#42A5F5">
+
+                                </TabWidget>
+
+                                <FrameLayout
+                                    android:id="@android:id/tabcontent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="4.13">
+
+                                        <LinearLayout
+                                            android:id="@+id/tab1"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="260dp"
+                                            android:background="#5AAEFF"
+                                            android:orientation="vertical">
+
+                                                <!--공지사항 텍스트-->
+                                                <TextView
+                                                    android:id="@+id/notice5"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="notice5Clicked"
+                                                    android:text="
+한화 vs NC 3연전 체전의 날 행사"
+                                                    />
+
+                                                <TextView
+                                                    android:id="@+id/notice4"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:textColor="#FFFFFF"
+                                                    android:onClick="notice4Clicked"
+                                                    android:text="
+충주종합운동장(주경기장) 위치 혼동하지 마세요."/>
+
+
+                                                <TextView
+                                                    android:id="@+id/notice3"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="notice3Clicked"
+                                                    android:text="
+전국장애인체육대회 단체상 시상명칭 공모전 안내"
+                                                    android:textColor="@color/cardview_light_background" />
+
+
+                                                <TextView
+                                                    android:id="@+id/notice1"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="notice1Clicked"
+                                                    android:text="
+전국 장애인 체육대회 단체상 시상명칭 공모전 안내"
+                                                    android:textColor="@color/cardview_light_background" />
+
+                                                <TextView
+                                                    android:id="@+id/notice2"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="notice2Clicked"
+                                                    android:text="
+쇼미더체전!전국/장애인체전 홍보를 위한 통화연결음 서비스 "
+                                                    android:textColor="@color/cardview_light_background" />
+
+                                                <TextView
+                                                    android:id="@+id/tabhostplus"
+                                                    android:layout_width="200dp"
+                                                    android:layout_height="40dp"
+                                                    android:onClick="tabhostplusClicked"
+                                                    android:text="
+더보기"
+                                                    android:textColor="@color/cardview_light_background"
+                                                    android:textSize="25dp" />
+
+
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:id="@+id/tab2"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="260dp"
+                                            android:background="#2196D0"
+                                            android:orientation="vertical">
+                                                <!--대회뉴스 부분 텍스트바-->
+                                                <TextView
+                                                    android:id="@+id/news1"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="news1Clicked"
+                                                    android:text="
+충북도, 랩 컬러링으로 전국체전 홍보"
+                                                    android:textColor="@color/cardview_light_background" />
+
+                                                <TextView
+                                                    android:id="@+id/news2"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="news2Clicked"
+                                                    android:text="
+2017 전국체전 홍보, 지역사회가 앞장선다!"
+                                                    android:textColor="@color/cardview_light_background" />
+
+                                                <TextView
+                                                    android:id="@+id/news3"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="news3Clicked"
+                                                    android:text="
+전국장애인체전 '안방 잔치' 다짐"
+                                                    android:textColor="@color/cardview_light_background" />
+
+                                                <TextView
+                                                    android:id="@+id/news4"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="news4Clicked"
+                                                    android:text="
+충주 예성여고 축구부 '전국 최강'"
+                                                    android:textColor="@color/cardview_light_background" />
+
+                                                <TextView
+                                                    android:id="@+id/news5"
+                                                    android:layout_width="392dp"
+                                                    android:layout_height="wrap_content"
+                                                    android:layout_weight="0.05"
+                                                    android:onClick="news5Clicked"
+                                                    android:text="
+충주시 전국체전 개ㆍ폐회식 시민 참가자 신청·접수"
+                                                    android:textColor="@color/cardview_light_background" />
+
+                                                <TextView
+                                                    android:id="@+id/tabhostplus2"
+                                                    android:layout_width="200dp"
+                                                    android:layout_height="40dp"
+                                                    android:onClick="tabhostplus2Clicked"
+                                                    android:textSize="25dp"
+                                                    android:text="
+더보기"
+                                                    android:textColor="@color/cardview_light_background" />
+
+
+                                        </LinearLayout>
+
+                                </FrameLayout>
+
+                        </LinearLayout>
+                </TabHost>
+
+                <com.github.clans.fab.FloatingActionMenu
+                    android:id="@+id/social_floating_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="18dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:menu_animationDelayPerItem="55"
+                    app:menu_backgroundColor="@android:color/transparent"
+                    app:menu_buttonSpacing="0dp"
+                    app:menu_colorNormal="#808080"
+                    app:menu_colorPressed="#da226f"
+                    app:menu_colorRipple="#99d4d4d4"
+                    app:menu_fab_label="전국체전 알리기"
+                    app:menu_fab_size="normal"
+                    app:menu_icon="@drawable/fab_add"
+                    app:menu_labels_colorNormal="#5b89ff"
+                    app:menu_labels_colorPressed="#5b89dd"
+                    app:menu_labels_colorRipple="#66efecec"
+                    app:menu_labels_cornerRadius="3dp"
+                    app:menu_labels_ellipsize="none"
+                    app:menu_labels_hideAnimation="@anim/fab_slide_out_to_right"
+                    app:menu_labels_margin="0dp"
+                    app:menu_labels_maxLines="-1"
+                    app:menu_labels_padding="8dp"
+                    app:menu_labels_position="left"
+                    app:menu_labels_showAnimation="@anim/fab_slide_in_from_right"
+                    app:menu_labels_showShadow="false"
+                    app:menu_labels_singleLine="false"
+                    app:menu_labels_textColor="#f2f1f1"
+                    app:menu_labels_textSize="15sp"
+                    app:menu_openDirection="up"
+                    app:menu_shadowColor="#66aff198"
+                    app:menu_shadowRadius="4dp"
+                    app:menu_shadowXOffset="1dp"
+                    app:menu_shadowYOffset="4dp"
+                    app:menu_showShadow="false">
+
+                        <com.github.clans.fab.FloatingActionButton
+                            android:id="@+id/floating_kakaotalk"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:onClick="onkakaoClicked"
+                            android:src="@mipmap/kakaotalk"
+                            app:fab_size="mini"
+                            app:menu_fab_label="전국체전 알리기" />
+
+                        <com.github.clans.fab.FloatingActionButton
+                            android:id="@+id/floating_kakaotalkweb"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:onClick="onkakaowebClicked"
+                            android:src="@mipmap/kakaotalk"
+                            app:fab_size="mini" />
+
+                        <com.github.clans.fab.FloatingActionButton
+                            android:id="@+id/floating_facebook"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:onClick="onfacebookClicked"
+                            android:src="@mipmap/facebook"
+                            app:fab_size="mini" />
+
+                        <com.github.clans.fab.FloatingActionButton
+                            android:id="@+id/floating_instagram"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:onClick="oninstagramClicked"
+                            android:src="@mipmap/instagram"
+                            app:fab_size="mini" />
+
+                        <com.github.clans.fab.FloatingActionButton
+                            android:id="@+id/floating_twitter"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:onClick="ontwitterClicked"
+                            android:src="@mipmap/twitter"
+                            app:fab_size="mini" />
+
+                </com.github.clans.fab.FloatingActionMenu>
+
+        </android.support.constraint.ConstraintLayout>
 </ScrollView>

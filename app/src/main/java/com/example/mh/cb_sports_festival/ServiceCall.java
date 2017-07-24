@@ -2,8 +2,14 @@ package com.example.mh.cb_sports_festival;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 
 public class ServiceCall extends AppCompatActivity {
@@ -12,6 +18,11 @@ public class ServiceCall extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_call);
+    }
+
+    public void onButtonHomeClicked(View V) { //홈으로 이동
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void call1Clicked(View v){
@@ -36,4 +47,6 @@ public class ServiceCall extends AppCompatActivity {
     }
 
 
+
 }
+
