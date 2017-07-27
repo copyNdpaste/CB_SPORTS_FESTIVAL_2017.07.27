@@ -221,10 +221,6 @@ public class MainActivity extends AppCompatActivity
         startActivity(intent);
     }
 
-    public void ontwitterClicked(View V) { //트위터 글올리기로 이동
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://2017sports.chungbuk.go.kr/www/selectBbsNttList.do?bbsNo=1&key=98"));
-        startActivity(intent);
-    }
     public void onkakaoClicked(View V) { //카카오로 모두의 체전 앱 공유
          shareKakao();
     }
@@ -236,6 +232,9 @@ public class MainActivity extends AppCompatActivity
     }
     public void oninstagramClicked(View V) { //인스타그램으로 이동
         shareInstagram();
+    }
+    public void ontwitterClicked(View V) { //인스타그램으로 이동
+        shareTwitter();
     }
     @Override
     public void onBackPressed() {
@@ -265,7 +264,7 @@ public class MainActivity extends AppCompatActivity
 
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.END);
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
